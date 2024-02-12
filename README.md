@@ -1,4 +1,4 @@
-## 1. How to run application 
+## 1. How to run the application 
 
 ```
 docker-compose up
@@ -9,9 +9,13 @@ docker-compose up
 ```
 http://localhost:5001
 ```
-## 3. How to use
+## 3. How to open celery monitoring
+```
+http://localhost:5555
+```
+## 4. How to use
 
-#### 3.0 Upload small file and run job
+#### 4.0 Upload small file and run job
 ```
 curl -X 'POST' \
   'http://localhost:5001/api/calculateDistances/' \
@@ -31,7 +35,7 @@ curl -X 'POST' \
 
 
 
-#### 3.1 Get job result by task id
+#### 4.1 Get job result by task id
 ```
 curl -X 'GET' \
   'http://localhost:5001/api/getResult/fe2e505d-b04d-4caf-90f7-443f6d7407a5' \
