@@ -34,7 +34,7 @@ def find_addresses(points):
     geolocator = Nominatim(user_agent="reverse-geo-app", scheme="http")
     reverse = RateLimiter(geolocator.reverse, min_delay_seconds=1)
 
-    result = {"points": []}
+    result = []
 
     for point in points:
         try:
@@ -43,7 +43,7 @@ def find_addresses(points):
             location = reverse((point["latitude"], point["longitude"]))
 
             address = location.address if location else "Address not found"
-            result["points"].append({"name": point["name"], "address": address})
+            result.append({"name": point["name"], "address": address})
         except geopy.exc.GeocoderTimedOut as e:
             print(str(e))
 
@@ -51,7 +51,7 @@ def find_addresses(points):
 
 
 def calculate_distances(points):
-    result = {"links": []}
+    result = []
 
     geodesic_limited = RateLimiter(geodesic, min_delay_seconds=1)
 
@@ -65,7 +65,7 @@ def calculate_distances(points):
             ).meters
 
             link_name = f"{pair[0]['name']}{pair[1]['name']}"
-            result["links"].append({"name": link_name, "distance": round(distance, 1)})
+            result.append({"name": link_name, "distance": round(distance, 1)})
         except Exception as e:
             print(f"Unexpected error: {str(e)}")
 
