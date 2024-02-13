@@ -73,7 +73,7 @@ def calculate_distances(points):
 
 
 if __name__ == "__main__":
-    file_path = "./uploaded-files/sample-geo.csv"
+    file_path = "sample-geo.csv"
     points = read_csv(file_path)
     find_addresses(points)
     calculate_distances(points)
